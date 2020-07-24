@@ -2,33 +2,33 @@ version: "3.8"
 
 services:
   master:
-    build: docker/master
+    image: redis-py-master
     ports:
       - "6379:6379"
 
   slave:
-    build: docker/slave
+    image: redis-py-slave
     depends_on:
       - "master"
     ports:
       - "6380:6380"
 
   sentinel_1:
-    build: docker/sentinel_1
+    image: redis-py-sentinel-1
     depends_on:
       - "slave"
     ports:
       - "26379:26379"
 
   sentinel_2:
-    build: docker/sentinel_2
+    image: redis-py-sentinel-2
     depends_on:
       - "slave"
     ports:
       - "26380:26380"
 
   sentinel_3:
-    build: docker/sentinel_3
+    image: redis-py-sentinel-3
     depends_on:
       - "slave"
     ports:
